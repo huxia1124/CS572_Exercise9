@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  h1 Search
+  p
+    form(action='/search', method='post')
+      table
+        tr
+          td
+            |Category
+          td
+            select(name="category")
+              option Food
+              option Car service
+              option Hospital
+              option School
+        tr
+          td
+            |Longitude:
+          td
+            input(type='text',id="longElem",name="long", readonly)
+        tr
+          td
+            |Latitude:
+          td
+            input(type='text',id="latElem",name="lat", readonly)
+        tr
+          td(colspan='2')
+            input(type='submit',value='Search Now',id='submitButton', disabled)
+      
+  p
+    script.
+      getCurrentLocationWrapper(searchPageGeoCallback);
+    table(border="1")
+      tr
+        th Name
+        th Category
+        th Longitude
+        th Latitude
+      if items
+        for item in items
+          tr
+            td=item.name
+            td=item.category
+            td=item.coord[0]
+            td=item.coord[1]

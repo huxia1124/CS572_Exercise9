@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1 Add point
+  p
+    form(action='/add',method='post')
+      table
+        tr
+          td
+            |Name:
+          td
+            input(name="name",type='text')
+        tr
+          td
+            |Category:
+          td
+            select(name="category")
+              option Food
+              option Car service
+              option Hospital
+              option School
+        tr
+          td
+            | Longitude:
+          td
+            input(name="long",type='text',id="longElem")
+          td(rowspan="2")
+            input(type="button",value="Get current Location",onclick="getCurrentLocationWrapper()")
+        tr
+          td
+            | Latitude:
+          td
+            input(name="lat",type='text',id="latElem")
+
+      input(type="submit",value="Submit")
